@@ -1,0 +1,86 @@
+# Exercise 1
+```javascript
+function BinarySearchTree(val) {
+    this.value = val;
+    this.right = null;
+    this.left = null;
+}
+ 
+BinarySearchTree.prototype.insert = function(passedValue) {
+    let subtree = passedValue < this.value ? 'left' : 'right';
+    if (this[subtree]) {
+       this[subtree].insert(passedValue);
+    } else {
+       this[subtree] = new BinarySearchTree(passedValue);
+    }
+};
+ 
+BinarySearchTree.prototype.getMax = function() {
+    if (this.right)
+        return this.right.getMax();
+    else
+        return this.value;
+};
+ 
+BinarySearchTree.prototype.getMin = function() {
+    if (this.left)
+        return this.left.getMin();
+    else
+        return this.value;
+};
+ 
+BinarySearchTree.prototype.contains = function(value) {
+    if (this.value === value)
+        return true;
+    let subtree = value < this.value ? "left" : "right";
+    if(this[subtree]) {
+        return this[subtree].contains(value);
+    } else {
+        return false;
+    }
+};
+ 
+// 11, 6, 8, 19, 4, 10, 5, 17, 43, 49, 31
+var newTree = new BinarySearchTree(11);
+newTree.insert(6);
+newTree.insert(8);
+newTree.insert(19);
+newTree.insert(4);
+newTree.insert(10);
+newTree.insert(5);
+newTree.insert(17);
+newTree.insert(43);
+newTree.insert(49);
+newTree.insert(31);
+console.log(newTree.getMax());
+console.log(newTree.getMin());
+```
+
+# Exercise 2
+```javascript
+var letterTree = new BinarySearchTree('E');
+letterTree.insert('A');
+letterTree.insert('S');
+letterTree.insert('Y');
+letterTree.insert('Q');
+letterTree.insert('U');
+letterTree.insert('E');
+letterTree.insert('S');
+letterTree.insert('T');
+letterTree.insert('I');
+letterTree.insert('O');
+letterTree.insert('N');
+console.log(letterTree.getMax());
+console.log(letterTree.getMin());
+ 
+ 
+var KTree = new BinarySearchTree(0);
+for (var i = 1; i < 1001; i++) {
+    KTree.insert(i)
+} 
+console.log(KTree.getMin());
+console.log(KTree.getMax());
+console.log(KTree.contains(363));
+console.log(KTree.contains(1363));
+console.log(KTree.contains(0));
+```
