@@ -13,3 +13,64 @@ E A S Y Q U E S T I O N
 (c) 3 923 220 911 244 898 258 362 363  
 (d) 4 924 278 347 621 299 392 358 363  
 (e) 5 925 202 910 245 363  
+
+# Help
+## How to create a Binary Tree
+```javascript
+function BinarySearchTree(val) {
+    this.value = val;
+    this.right = null;
+    this.left = null;
+}
+ 
+BinarySearchTree.prototype.insert = function(passedValue) {
+    let subtree = passedValue < this.value ? 'left' : 'right';
+    if (this[subtree]) {
+       this[subtree].insert(passedValue);
+    } else {
+       this[subtree] = new BinarySearchTree(passedValue);
+    }
+};
+ 
+BinarySearchTree.prototype.getMax = function() {
+    if (this.right)
+        return this.right.getMax();
+    else
+        return this.value;
+};
+ 
+BinarySearchTree.prototype.getMin = function() {
+    if (this.left)
+        return this.left.getMin();
+    else
+        return this.value;
+};
+ 
+BinarySearchTree.prototype.contains = function(value) {
+    if (this.value === value)
+        return true;
+    let subtree = value < this.value ? "left" : "right";
+    if(this[subtree]) {
+        return this[subtree].contains(value);
+    } else {
+        return false;
+    }
+};
+```
+
+## How to add elements
+```javascript
+var newTree = new BinarySearchTree(11);
+newTree.insert(6);
+newTree.insert(8);
+newTree.insert(19);
+newTree.insert(4);
+newTree.insert(10);
+newTree.insert(5);
+newTree.insert(17);
+newTree.insert(43);
+newTree.insert(49);
+newTree.insert(31);
+console.log(newTree.getMax());
+console.log(newTree.getMin());
+```
