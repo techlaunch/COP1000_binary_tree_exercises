@@ -17,45 +17,47 @@ E A S Y Q U E S T I O N
 # Help
 ## How to create a Binary Tree
 ```javascript
-function BinarySearchTree(val) {
-    this.value = val;
-    this.right = null;
-    this.left = null;
+class BinarySearchTree{
+	constructor(val) {
+	this.value = val;
+	this.right = null;
+	this.left = null;
+	}
+
+	insert(passedValue) {
+		let subtree = passedValue < this.value ? 'left' : 'right';
+		if (this[subtree]) {
+	       this[subtree].insert(passedValue);
+		} else {
+	       this[subtree] = new BinarySearchTree(passedValue);
+		}
+	}
+
+	getMax() {
+	if (this.right)
+		return this.right.getMax();
+	else
+		return this.value;
+	}
+
+	getMin() {
+		if (this.left)
+			return this.left.getMin();
+		else
+			return this.value;
+	}
+
+	contains(value) {
+		if (this.value === value)
+			return true;
+		let subtree = value < this.value ? "left" : "right";
+		if(this[subtree]) {
+			return this[subtree].contains(value);
+		} else {
+			return false;
+		}
+	}
 }
- 
-BinarySearchTree.prototype.insert = function(passedValue) {
-    let subtree = passedValue < this.value ? 'left' : 'right';
-    if (this[subtree]) {
-       this[subtree].insert(passedValue);
-    } else {
-       this[subtree] = new BinarySearchTree(passedValue);
-    }
-};
- 
-BinarySearchTree.prototype.getMax = function() {
-    if (this.right)
-        return this.right.getMax();
-    else
-        return this.value;
-};
- 
-BinarySearchTree.prototype.getMin = function() {
-    if (this.left)
-        return this.left.getMin();
-    else
-        return this.value;
-};
- 
-BinarySearchTree.prototype.contains = function(value) {
-    if (this.value === value)
-        return true;
-    let subtree = value < this.value ? "left" : "right";
-    if(this[subtree]) {
-        return this[subtree].contains(value);
-    } else {
-        return false;
-    }
-};
 ```
 
 ## How to add elements
