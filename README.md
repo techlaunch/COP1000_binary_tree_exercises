@@ -62,17 +62,17 @@ class BinarySearchTree{
 
 ## How to add elements
 ```javascript
-var newTree = new BinarySearchTree(11);
-newTree.insert(6);
-newTree.insert(8);
-newTree.insert(19);
-newTree.insert(4);
-newTree.insert(10);
-newTree.insert(5);
-newTree.insert(17);
-newTree.insert(43);
+var newTree = new BinarySearchTree(50);
 newTree.insert(49);
-newTree.insert(31);
+newTree.insert(39);
+newTree.insert(19);
+newTree.insert(69);
+newTree.insert(79);
+newTree.insert(89);
+newTree.insert(90);
+newTree.insert(10);
+newTree.insert(12);
+newTree.insert(99);
 console.log(newTree.getMax());
 console.log(newTree.getMin());
 ```
